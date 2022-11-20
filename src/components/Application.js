@@ -16,7 +16,6 @@ export default function Application(props) {
     setDay,
     bookInterview,
     cancelInterview,
-    updateSpots
   } = useApplicationData();
 
 
@@ -37,7 +36,7 @@ export default function Application(props) {
     );
   });
 
-  updateSpots("updateSpots:", appointments)
+  
 
   return (
 
