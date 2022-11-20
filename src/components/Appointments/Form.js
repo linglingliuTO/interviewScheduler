@@ -21,7 +21,7 @@ const save =() => {props.onSave(student,interviewer)}
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
-            placeholder="Enter Student Name"
+            placeholder= {props.placeholder}
             onSubmit={event => event.preventDefault()}
             onChange={(event) => setStudent(event.target.value)}
           />
