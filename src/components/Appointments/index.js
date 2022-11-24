@@ -39,7 +39,7 @@ export default function Appointment(props) {
     props.bookInterview(props.id, interview)
       .then((result) => {
         if (result) {
-          transition(SHOW )
+          transition(SHOW)
         } else {
           transition(ERROR_SAVE, true)
         }
@@ -71,7 +71,7 @@ export default function Appointment(props) {
     transition(EDIT)
   }
 
-  console.log(mode)
+  // console.log(mode)
   return (
     <article className="appointment">
       <Fragment>
