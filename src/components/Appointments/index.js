@@ -73,7 +73,7 @@ export default function Appointment(props) {
 
   // console.log(mode)
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Fragment>
         {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
         {mode === SHOW && (

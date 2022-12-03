@@ -57,9 +57,9 @@ export default {
   defaults: { baseURL: "http://localhost:3000" },
  
   get: jest.fn(url => {
-    console.log("this is the URL", url)
+   
     if (url === "/api/days") {
-      console.log("this is the api call")
+      
       return Promise.resolve({
         status: 200,
         statusText: "OK",
@@ -69,7 +69,7 @@ export default {
 
     if (url === "/api/appointments") {
       /* Resolve appointments data */
-      console.log("this is the api call appoint")
+     
       return Promise.resolve({
         status: 200,
         statusText: "OK",
@@ -79,12 +79,33 @@ export default {
 
     if (url === "/api/interviewers") {
       /* Resolve interviewers data */
-      console.log("this is the api call interviewer")
+      
       return Promise.resolve({
         status: 200,
         statusText: "OK",
         data: fixtures.interviewers
       });
     }
-  })
+  }),
+
+
+  put: jest.fn(url => {
+   
+    return Promise.resolve({
+      status: 204,
+      statusText: "No Content",
+     
+    });
+  
+  }),
+
+delete: jest.fn(url => {
+   
+  return Promise.resolve({
+    status: 204,
+    statusText: "No Content",
+   
+  });
+
+})
 };

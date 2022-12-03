@@ -56,7 +56,6 @@ export default function useApplicationData() {
         return true
       })
       .catch(err => {
-        console.log(err)
         return false
       })
 
