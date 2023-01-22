@@ -74,6 +74,8 @@ export default function Appointment(props) {
   // console.log(mode)
   return (
     <article className="appointment" data-testid="appointment">
+    <Header time={props.time} />
+
       <Fragment>
         {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
         {mode === SHOW && (
