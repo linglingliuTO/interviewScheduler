@@ -80,8 +80,8 @@ export default function Appointment(props) {
         {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
         {mode === SHOW && (
           <Show
-            student={props.interview.student}
-            interviewer={props.interview.interviewer.name}
+            student={props.interview?.student}
+            interviewer={props.interview?.interviewer?.name}
             onConfirm={onConfirm}
             onEdit={onEdit}
           />
@@ -101,14 +101,14 @@ export default function Appointment(props) {
         {mode === DELETING && (<Status message="Deleting" />)}
         {mode === EDIT && (
           <Form
-            interviewers={props.interviewers}
-            placeholder={props.interview.student}
-            interviewer={props.interview.interviewer.id}
-            student={props.interview.student}
-            onCancel={back}
+            interviewers={props?.interviewers}
+            placeholder={props?.interview?.student}
+            interviewer={props?.interview?.interviewer.id}
+            student={props?.interview?.student}
+            onCancel={()=>transition(SHOW)}
             onSave={save}
           />)}
-        {mode === ERROR_SAVE && (<Error message="Error cannot save" onClose ={back}/>)}
+        {mode === ERROR_SAVE && (<Error message="Error cannot save" onClose ={onEdit}/>)}
         {mode === ERROR_DELETE && (<Error message="Error cannot delete" onClose ={back}/>)}
       </Fragment>
     </article>
