@@ -22,7 +22,7 @@ export default function Appointment(props) {
   const EDIT = "EDIT";
   const ERROR_SAVE = "ERROR_SAVE";
   const ERROR_DELETE = "ERROR_DELETE";
-
+  const ERROR_EDIT = "ERROR_EDIT";
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -71,6 +71,10 @@ export default function Appointment(props) {
     transition(EDIT)
   }
 
+  function onEditError() {
+    transition(ERROR_EDIT)
+  }
+
   // console.log(mode)
   return (
     <article className="appointment" data-testid="appointment">
@@ -108,7 +112,16 @@ export default function Appointment(props) {
             onCancel={()=>transition(SHOW)}
             onSave={save}
           />)}
-        {mode === ERROR_SAVE && (<Error message="Error cannot save" onClose ={onEdit}/>)}
+        {mode === ERROR_EDIT && (
+          <Form
+            interviewers={props?.interviewers}
+            placeholder={props?.interview?.student}
+            interviewer={props?.interview?.interviewer.id}
+            student={props?.interview?.student}
+            onCancel={()=>transition(EMPTY)}
+            onSave={save}
+          />)}
+        {mode === ERROR_SAVE && (<Error message="Error cannot save" onClose ={onEditError}/>)}
         {mode === ERROR_DELETE && (<Error message="Error cannot delete" onClose ={back}/>)}
       </Fragment>
     </article>
