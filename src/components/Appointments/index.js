@@ -24,6 +24,7 @@ export default function Appointment(props) {
   const ERROR_DELETE = "ERROR_DELETE";
   const ERROR_EDIT = "ERROR_EDIT";
   const ERROR_CREATE = "ERROR_CREATE";
+  const ERROR_EDIT_MSG = "ERROR_EDIT_MSG";
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -35,14 +36,14 @@ export default function Appointment(props) {
       interviewer
     };
     transition(SAVING, true)
-    // console.log("saving")
+  
     props.bookInterview(props.id, interview)
       .then((result) => {
         if (result) {
           transition(SHOW)
         } else {
-          if (mode=== EDIT)
-          transition(ERROR_EDIT, true)
+          if (mode === EDIT)
+          transition(ERROR_EDIT_MSG, true)
           else 
           transition(ERROR_SAVE,true)
         }
@@ -82,7 +83,7 @@ export default function Appointment(props) {
     transition(ERROR_CREATE)
   }
 
-  // console.log(mode)
+
   return (
     <article className="appointment" data-testid="appointment">
     <Header time={props.time} />
@@ -108,7 +109,7 @@ export default function Appointment(props) {
           />
         )}
         {mode === SAVING && (<Status message="Saving" />)}
-        {mode === CONFIRM && (<Confirm onCancel={back} onDelete={onDelete} />)}
+        {mode === CONFIRM && (<Confirm onCancel={()=>transition(SHOW)} onDelete={onDelete} />)}
         {mode === DELETING && (<Status message="Deleting" />)}
         {mode === EDIT && (
           <Form
@@ -137,6 +138,7 @@ export default function Appointment(props) {
             onSave={save}
           />)}
         {mode === ERROR_SAVE && (<Error message="Error cannot save" onClose ={onCreateError}/>)}
+        {mode === ERROR_EDIT_MSG && (<Error message="Error cannot save" onClose ={onEditError}/>)}
         {mode === ERROR_DELETE && (<Error message="Error cannot delete" onClose ={back}/>)}
       </Fragment>
     </article>
