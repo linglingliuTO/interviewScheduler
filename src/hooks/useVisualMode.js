@@ -25,9 +25,10 @@ export default function useVisualMode(initial) {
     const history_copy = [...history]
     if (history_copy.length > 1) {
       history_copy.splice(history_copy.length - 1)
-      setMode(mode => (history[history_copy.length - 1]))
+      setMode(mode => (history_copy[history_copy.length - 1]))
      
     }
   }
+
   return { mode, transition, back };
 }
